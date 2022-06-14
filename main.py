@@ -8,11 +8,11 @@ from sqlalchemy.orm import relationship
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from forms import CreatePostForm, CreateRegistrationForm, CreateLoginForm, CreateCommentForm
 from flask_gravatar import Gravatar
-from secrets import token_hex
 from functools import wraps
+from os import environ
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = token_hex()
+app.config['SECRET_KEY'] = environ.get("SECRET_KEY")
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
